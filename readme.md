@@ -1,89 +1,107 @@
-# Example Component Library for Ignition Perspective
+# Tailwind CSS Example Component Library for Ignition Perspective
 
-This project demonstrates how to create custom components for Ignition Perspective, Inductive Automation's web-based application platform. It includes a sample Button component and showcases the structure required for developing, building, and integrating custom components into Ignition Perspective.
+This project is a Tailwind CSS-enabled variant of the [Example Component Library](https://github.com/design-group/example-perspective-component-module). It demonstrates how to create custom components for Ignition Perspective using Tailwind CSS for styling, providing a utility-first approach to component design.
+
+## Overview
+
+This variant adds Tailwind CSS integration to the base Example Component Library, allowing developers to:
+- Use utility-first CSS classes in Perspective components
+- Maintain consistent styling across components
+- Leverage PostCSS for modern CSS processing
+- Take advantage of Tailwind's responsive design utilities
+
+If you're looking for the base example without Tailwind CSS, please see the [original Example Component Library](https://github.com/design-group/example-perspective-component-module).
 
 ## Project Structure
 
-The project is organized into several key directories:
+The project follows the same structure as the base Example Component Library, with additional configuration for Tailwind CSS:
 
 - `common`: Shared code used by both the Gateway and Designer
 - `designer`: Designer-specific code
 - `gateway`: Gateway-specific code
-- `web`: Frontend React components and build configuration
+- `web`: Frontend React components and Tailwind CSS configuration
+    - `tailwind.config.js`: Tailwind CSS configuration
+    - `postcss.config.js`: PostCSS configuration
+    - `src/css/styles.css`: Main CSS file with Tailwind directives
 - `docker`: Contains Docker-related files for development and testing
 
-### Key Files
+### Key Differences from Base Example
 
-- `build.gradle.kts`: Main Gradle build file
-- `settings.gradle.kts`: Gradle settings file
-- `common/build.gradle.kts`, `designer/build.gradle.kts`, `gateway/build.gradle.kts`, `web/build.gradle.kts`: Subproject-specific build files
-- `web/package.json`: npm dependencies and scripts for the web components
-- `web/webpack.config.js`: Webpack configuration for building the web components
-- `web/tsconfig.json`: TypeScript configuration
+This variant includes these additional configurations:
+1. Tailwind CSS and PostCSS setup
+2. Modified webpack configuration for CSS processing
+3. Updated example components using Tailwind utility classes
+4. Additional development dependencies for CSS processing
 
 ## Components
 
 Currently, this project includes one example component:
 
-- `Button`: A customizable button component (`web/src/components/Button.tsx`)
+- `Button`: A customizable button component (`web/src/components/Button.tsx`) demonstrating Tailwind CSS styling patterns
 
 ## Tools and Technologies
 
-- Java 11
-- Gradle for building the module
-- npm and Webpack for managing and building web components
-- TypeScript for type-safe JavaScript development
-- React for building user interface components
+All the base technologies from the Example Component Library, plus:
+- Tailwind CSS for utility-first styling
+- PostCSS for CSS processing
+- Additional webpack loaders for CSS handling
 
-## Building the Project
+## Getting Started
+
+Follow these steps to get started with the Tailwind CSS variant:
 
 1. Ensure you have Java 11, Gradle, and Node.js installed.
 
-2. Clone the repository:
-   ```
-   git clone https://github.com/design-group/example-perspective-component-module.git
-   cd example-perspective-component-module
+2. Clone this repository:
+   ```bash
+   git clone https://github.com/keith-gamble/ignition-module-with-tailwind-css.git
+   cd ignition-module-with-tailwind-css
    ```
 
-3. Build the web components to confirm you have the necessary tools and dependencies:
-   ```
+3. Build the web components:
+   ```bash
    cd web
    npm install
    npm run build
    ```
 
 4. Build the entire module:
-   ```
+   ```bash
    cd ..
    ./gradlew build
    ```
 
-This will produce a `.modl` file in the `build/` directory, which can be installed in Ignition.
+For detailed setup instructions, see our [Environment Setup Guide](docs/environment-setup.md).
 
 ## Development Workflow
 
-1. Create your `gradle.properties` file based off the template provided.
-   1. If you dont have the necessary tools to sign the module, then set `signModule=false`.
-2. Make changes to the Java code in `common`, `designer`, or `gateway` directories as needed.
-3. Develop React components in the `web/src/components` directory.
-4. Use `npm run watch` in the `web` directory to keep your changes up-to-date.
-5. With the Designer External Debugger open press `CMD + R` (`CTRL + R` on Windows) to refresh the designer and see your changes. 
-6. If you change any Java code, you will need to run `./gradlew build` to compile the Java code and redeploy the module to see the changes.
-7. Run `./gradlew build` in the root directory to build the entire module.
-8. Install the resulting `.modl` file in your Ignition gateway for testing.
-9. If you want to auto-deploy the module to your local gateway, set the `hostGateway` property in your `gradle.properties` file and run `./gradlew build deployModl`.
+The development workflow remains the same as the base example, with these Tailwind-specific additions:
 
-## Docker Development Environment
+1. Use Tailwind utility classes in your component JSX
+2. Add custom styles to `web/src/css/styles.css` if needed
+3. Configure theme settings in `tailwind.config.js`
+4. Run `npm run watch` in the `web` directory to see CSS changes in real-time
 
-A Docker environment is provided for development and testing. To use it:
+See the [Web Technologies Guide](docs/web-technologies.md) for detailed information about working with Tailwind CSS in this project.
 
-1. Navigate to the `docker` directory.
-2. Run `docker-compose up` to start the Ignition gateway.
-3. Set the `hostGateway` value in `gradle.properties` to the address of the Docker container (e.g., `hostGateway=http://localhost:8088`).
-4. Access the Ignition gateway at `http://localhost:8088`.
-5. After the first time you build the module, you'll need to go accept the license certificate in the gateway.
-6. After the license is accepted, download a new backup to replace the existing one in the `docker/backups` directory.
-7. Now run `./gradlew build deployModl` to build and deploy the module to the gateway automatically.
+## Documentation
+
+- [Environment Setup Guide](docs/environment-setup.md)
+- [Getting Started Guide](docs/getting-started.md)
+- [Adding Components Guide](docs/adding-components.md)
+- [Web Technologies Guide](docs/web-technologies.md) - **Important:** Includes Tailwind CSS setup and usage
+- [Building the Module](docs/building-the-module.md)
+- [CI/CD Setup Guide](docs/ci-cd-setup.md)
+
+## Why Use This Variant?
+
+Choose this variant if you:
+- Want to use utility-first CSS in your Perspective components
+- Need a consistent design system across components
+- Prefer working with Tailwind's utility classes
+- Want to leverage modern CSS tooling in your module
+
+If you don't need Tailwind CSS, consider using the [base Example Component Library](https://github.com/keith-gamble/example-perspective-component-module) instead.
 
 ## Contributing
 
