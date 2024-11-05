@@ -1,6 +1,6 @@
 services:
   gateway:
-    image: inductiveautomation/ignition:8.1.32
+    image: inductiveautomation/ignition:8.1.44
     environment:
       ACCEPT_IGNITION_EULA: Y
       GATEWAY_ADMIN_USERNAME: ${GATEWAY_USERNAME:-admin}
@@ -18,7 +18,8 @@ services:
       -n perspective-component-gateway
       -r /restore.gwbk
       --
-      -Dia.developer.moduleupload
+      gateway.useProxyForwardedHeader=true
+      -Dia.developer.moduleupload=true
       -Dignition.allowunsignedmodules=true
       -Dres.path.dev.bwdesigngroup.perspective.examples.ExampleComponentLibrary=/web-resources/build/generated-resources/mounted
     

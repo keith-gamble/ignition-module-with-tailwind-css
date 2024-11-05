@@ -1,38 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Styles for the example button component */
 
 .dg-example-button {
-	font-size: 0.875rem;
-	font-weight: 700;
-	border-radius: var(--borderRadius);
-	-webkit-border-radius: var(--borderRadius);
-	cursor: pointer;
-	-webkit-transition-duration: 0.1s;
-	transition-duration: 0.1s;
-	transition-property: box-shadow, background-color;
+    @apply text-sm font-bold rounded cursor-pointer transition-all duration-100;
 }
 
-/* Hover effect for enabled buttons */
 .dg-example-button:enabled:hover {
-	box-shadow: var(--boxShadow2);
+    @apply shadow-md;
 }
 
-/* Primary button style */
 .dg-example-button {
-	background-color: orange;
-	border: var(--containerBorder);
-	color: black;
+    @apply bg-orange-500 border border-solid text-black;
 }
 
-/* Active state for enabled buttons */
 .dg-example-button:enabled:active {
-	box-shadow: var(--boxShadow--inset);
-	border: none;
+    @apply shadow-inner border-none;
 }
 
-/* Disabled button style */
 .dg-example-button:disabled {
-	background-color: var(--callToAction--disabled);
-	border: var(--border--disabled);
-	color: var(--neutral-30);
-	cursor: not-allowed;
+    @apply bg-gray-300 border-gray-400 text-gray-600 cursor-not-allowed;
 }

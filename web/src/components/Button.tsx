@@ -47,12 +47,13 @@ export class Button extends Component<ComponentProps<ButtonProps>, any> {
 		const { props: { text, enabled }, emit } = this.props;
 		return (
 			<button
-				{...emit({ classes: ['dg-example-button'] })}
-				onClick={this.onActionPerformed}
-				disabled={!enabled}
-			>
-				{text}
-			</button>
+                {...emit({ classes: ['dg-example-button'] })}
+                onClick={this.onActionPerformed}
+                disabled={!enabled}
+                className="px-4 py-2 bg-orange-500 text-black rounded hover:shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed"
+            >
+                {text}
+            </button>
 		);
 	}
 }
