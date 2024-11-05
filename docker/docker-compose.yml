@@ -1,0 +1,34 @@
+services:
+  gateway:
+    image: inductiveautomation/ignition:8.1.32
+    environment:
+      ACCEPT_IGNITION_EULA: Y
+      GATEWAY_ADMIN_USERNAME: ${GATEWAY_USERNAME:-admin}
+      GATEWAY_ADMIN_PASSWORD: ${GATEWAY_PASSWORD:-password}
+      GATEWAY_MODULES_ENABLED: perspective
+      DISABLE_QUICKSTART: true
+    volumes:
+      - ../build/Example-Component-Library.modl:/usr/local/bin/ignition/user-lib/modules/Example-Component-Library.modl
+      - ./backups/gateway.gwbk:/restore.gwbk
+      - ../web:/web-resources
+    labels:
+      traefik.enable: "true"
+      traefik.hostname: "perspective-component"
+    command: >
+      -n perspective-component-gateway
+      -r /restore.gwbk
+      --
+      -Dia.developer.moduleupload
+      -Dignition.allowunsignedmodules=true
+      -Dres.path.dev.bwdesigngroup.perspective.examples.ExampleComponentLibrary=/web-resources/build/generated-resources/mounted
+    
+    # If a traefik proxy container is not being used, comment out everything below this line (https://github.com/design-group/traefik-proxy)
+    networks:
+      - default
+      - proxy
+    
+networks:
+  default:
+  proxy:
+    external: true
+    name: proxy
